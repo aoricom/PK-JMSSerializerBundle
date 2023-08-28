@@ -106,12 +106,10 @@ class CustomHandlerPassTest extends TestCase
         ], $args[1]);
     }
 
-    /**
-     * @expectedException RuntimeException
-     * @expectedExceptionMessage The direction "bar" of tag "jms_serializer.handler" of service "my_service" does not exist
-     */
     public function testHandlerIncorrectDirection()
     {
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage("The direction \"bar\" of tag \"jms_serializer.handler\" of service \"my_service\" does not exist");
         $container = $this->getContainer();
 
         $def = new Definition('Foo');
@@ -126,12 +124,10 @@ class CustomHandlerPassTest extends TestCase
         $pass->process($container);
     }
 
-    /**
-     * @expectedException RuntimeException
-     * @expectedExceptionMessage Each tag named "jms_serializer.handler" of service "my_service" must have at least two attributes: "type" and "format"
-     */
     public function testHandlerMustHaveTypeAndFormat()
     {
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage("Each tag named \"jms_serializer.handler\" of service \"my_service\" must have at least two attributes: \"type\" and \"format\"");
         $container = $this->getContainer();
 
         $def = new Definition('Foo');
@@ -293,12 +289,10 @@ class CustomHandlerPassTest extends TestCase
         ], $args[1]);
     }
 
-    /**
-     * @expectedException RuntimeException
-     * @expectedExceptionMessage The service "my_service" must implement the SubscribingHandlerInterface
-     */
     public function testSubscribingHandlerInterface()
     {
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage("The service \"my_service\" must implement the SubscribingHandlerInterface");
         $container = $this->getContainer();
 
         $def = new Definition('JMS\SerializerBundle\Tests\DependencyInjection\Fixture\SimpleObject');

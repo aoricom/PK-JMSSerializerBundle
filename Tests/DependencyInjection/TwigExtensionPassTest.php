@@ -41,12 +41,7 @@ class TwigExtensionPassTest extends TestCase
 
     public function testLazyExtension()
     {
-        if (
-            !class_exists('JMS\Serializer\Twig\SerializerRuntimeExtension')
-            || !interface_exists('Twig_RuntimeLoaderInterface')
-        ) {
-            $this->markTestSkipped("Lazy extensions are supported only by serializer 1.7.0");
-        }
+        $this->markTestSkipped("Lazy extensions are supported only by serializer 1.7.0");
         $container = $this->getContainer();
 
         $container->register('twig.runtime_loader');

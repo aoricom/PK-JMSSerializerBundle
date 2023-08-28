@@ -52,11 +52,9 @@ class ConfigurationTest extends TestCase
         $this->assertEquals($ref->getPath() . '/Resources/config', $directories['JMSSerializerBundleNs2']);
     }
 
-    /**
-     * @expectedException \Symfony\Component\Config\Definition\Exception\InvalidConfigurationException
-     */
     public function testWrongObjectConstructorFallbackStrategyTriggersException()
     {
+        $this->expectException(\Symfony\Component\Config\Definition\Exception\InvalidConfigurationException::class);
         $processor = new Processor();
         $processor->processConfiguration(new Configuration(true), [
             'jms_serializer' => [
